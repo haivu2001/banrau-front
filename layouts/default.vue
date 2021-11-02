@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app dense flat></v-app-bar>
+    <v-app-bar app color="primary" dense flat></v-app-bar>
     <v-main>
       <v-container>
         <Nuxt></Nuxt>
