@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-container>
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>
@@ -7,9 +7,9 @@
       {{ otherError }}
     </h1>
     <NuxtLink to="/">
-      Home page
+      Về trang chủ
     </NuxtLink>
-  </v-app>
+  </v-container>
 </template>
 
 <script>
@@ -21,13 +21,13 @@ export default {
       default: null
     }
   },
-  data () {
+  data() {
     return {
-      pageNotFound: '404 Not Found',
+      pageNotFound: '404 Không tìm thấy trang',
       otherError: 'An error occurred'
     }
   },
-  head () {
+  head() {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
