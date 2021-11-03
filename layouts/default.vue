@@ -25,9 +25,7 @@
 
     </v-app-bar>
     <v-main>
-      <v-container>
-        <Nuxt></Nuxt>
-      </v-container>
+      <Nuxt></Nuxt>
     </v-main>
   </v-app>
 </template>
