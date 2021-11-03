@@ -1,8 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dense flat>
+    <v-app-bar app color="primary" flat>
       <v-container class="py-0 fill-height">
         <v-btn v-for="link in links" :key="link.target" :to="link.target" dark text>
+          <v-icon> {{ link.icon }}</v-icon>
           {{ link.name }}
         </v-btn>
         <v-spacer></v-spacer>
@@ -35,10 +36,10 @@
 export default {
   data: () => ({
     links: [
-      {name: 'Trang Chủ', target: '/'},
-      {name: 'Của Hàng', target: '/shop'},
-      {name: 'Liên Hệ', target: '/contact'},
-      {name: 'Tài Khoản', target: '/account'},
+      {name: 'Trang Chủ', target: '/', icon: 'mdi-home'},
+      {name: 'Của Hàng', target: '/shop', icon: 'mdi-store'},
+      {name: 'Liên Hệ', target: '/contact', icon: 'mdi-contacts-outline'},
+      {name: 'Tài Khoản', target: '/account', icon: 'mdi-account-outline'},
     ]
   })
 }
