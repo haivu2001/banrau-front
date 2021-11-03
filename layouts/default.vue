@@ -16,13 +16,14 @@
             solo-inverted
           ></v-text-field>
         </v-responsive>
-        <v-btn dark text to="/cart">
-          <v-icon>
-            mdi-cart
-          </v-icon>
-        </v-btn>
+        <v-badge :content="numItemsInCart" bottom color="secondary" overlap>
+          <v-btn dark fab small text to="/cart">
+            <v-icon>
+              mdi-cart
+            </v-icon>
+          </v-btn>
+        </v-badge>
       </v-container>
-
     </v-app-bar>
     <v-main>
       <Nuxt></Nuxt>
@@ -38,7 +39,10 @@ export default {
       {name: 'Cửa Hàng', target: '/shop', icon: 'mdi-store'},
       {name: 'Liên Hệ', target: '/contact', icon: 'mdi-contacts-outline'},
       {name: 'Tài Khoản', target: '/account', icon: 'mdi-account-outline'},
-    ]
-  })
+    ],
+  }),
+  computed: {
+    numItemsInCart: () => 99,
+  },
 }
 </script>
