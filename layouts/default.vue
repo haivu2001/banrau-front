@@ -35,7 +35,7 @@ export default {
   data: () => ({
     links: [
       {name: 'Trang Chủ', target: '/', icon: 'mdi-home'},
-      {name: 'Của Hàng', target: '/shop', icon: 'mdi-store'},
+      {name: 'Cửa Hàng', target: '/shop', icon: 'mdi-store'},
       {name: 'Liên Hệ', target: '/contact', icon: 'mdi-contacts-outline'},
       {name: 'Tài Khoản', target: '/account', icon: 'mdi-account-outline'},
     ]
