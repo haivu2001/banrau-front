@@ -9,9 +9,10 @@
     <v-spacer></v-spacer>
 
     <v-card-actions class="card-actions">
-      <v-btn block color="primary">
+      <v-btn :disabled="alreadyInCart" block color="primary" @click="addToCart">
         <v-icon>mdi-cart-plus</v-icon>
-        Thêm vào giỏ
+        <template v-if="alreadyInCart">Đã có trong giỏ</template>
+        <template v-else>Thêm vào giỏ</template>
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -19,7 +20,17 @@
 
 <script>
 export default {
-  props: ['product']
+  props: ['product'],
+  methods: {
+    addToCart(_) {
+      this.$store.commit('addItemToCart', this.product)
+    }
+  },
+  computed: {
+    alreadyInCart() {
+      return this.$store.getters.itemsInCart.find((x) => x === this.product.id)
+    }
+  }
 }
 </script>
 
