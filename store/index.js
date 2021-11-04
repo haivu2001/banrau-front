@@ -1,11 +1,22 @@
 export const state = () => ({
-  counter: 0
+  itemsInCart: []
 })
+
+export const mutations = {
+  addItemToCart(state, item) {
+    state.itemsInCart.push(item.id)
+  }
+}
+
 
 export const getters = {
   isLoggedIn(_state) {
     return false;
   },
+  itemsInCart(state) {
+    return state.itemsInCart
+  }
+  ,
   purchasableProducts(_state) {
     return [
       {
@@ -26,7 +37,14 @@ export const getters = {
       },
       {id: '00C', name: "Rau C", price: 3000000, image: 'raub.png', description: 'Ahihi'},
       {id: '00D', name: "Rau D", price: 3000000, image: 'raub.png', description: 'huh'},
-      {id: '00E', name: "Rau E", price: 1000000, image: 'raub.png', description: 'ok'},
+      {
+        id: '00E',
+        name: "Rau E",
+        price: 1000000,
+        image: 'raub.png',
+        description: 'Proin id risus non risus finibus laoreet non non nulla. Phasellus aliquam eros metus, et eleifend libero gravida at. Mauris semper gravida dolor vitae pulvinar. Etiam pulvinar gravida mauris at sodales. In vitae nulla in turpis consequat consequat vel nec dui. Proin tincidunt luctus dui id ultrices. Integer fringilla efficitur quam nec vestibulum. Donec condimentum ac nisi ut laoreet. In risus dolor, iaculis eu dictum vel, bibendum eu augue. Donec eget neque dui. Vivamus metus dolor, porttitor vel lectus nec, laoreet faucibus magna. Duis feugiat condimentum pulvinar. Nam volutpat lectus non commodo accumsan. Ut aliquam justo at dolor dignissim rhoncus. Curabitur vestibulum convallis interdum.\n' +
+          '\n'
+      },
     ]
   }
 }
