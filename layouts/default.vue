@@ -45,9 +45,11 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      'isLoggedIn'
+      'isLoggedIn', 'itemsInCart'
     ]),
-    numItemsInCart: () => 99,
+    numItemsInCart() {
+      return this.$store.getters.itemsInCart.length
+    },
   },
 }
 </script>
