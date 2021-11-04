@@ -6,6 +6,7 @@
           <v-icon> {{ link.icon }}</v-icon>
           {{ link.name }}
         </v-btn>
+        <AccountMenu :isLoggedIn="isLoggedIn"></AccountMenu>
         <v-spacer></v-spacer>
         <v-responsive class="mr-6" max-width="260">
           <v-text-field
@@ -32,16 +33,20 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   data: () => ({
     links: [
       {name: 'Trang Chủ', target: '/', icon: 'mdi-home'},
       {name: 'Cửa Hàng', target: '/shop', icon: 'mdi-store'},
       {name: 'Liên Hệ', target: '/contact', icon: 'mdi-contacts-outline'},
-      {name: 'Tài Khoản', target: '/account', icon: 'mdi-account-outline'},
     ],
   }),
   computed: {
+    ...mapGetters([
+      'isLoggedIn'
+    ]),
     numItemsInCart: () => 99,
   },
 }
