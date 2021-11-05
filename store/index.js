@@ -1,3 +1,6 @@
+// import '@fortawesome/fontawesome-free/css/all.css'
+//import 'material-design-icons-inconfont/dist/material-design-icons.css'
+//import 'material-design-icons-iconfont/src/material-design-icons';
 export const state = () => ({
   itemsInCart: []
 })

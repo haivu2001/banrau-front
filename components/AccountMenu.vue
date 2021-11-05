@@ -20,12 +20,12 @@
       <template v-if="!isLoggedIn">
         <v-list-item>
           <v-list-item-title>
-            <v-btn text>Đăng Nhập</v-btn>
+            <v-btn to="./login">Đăng Nhập</v-btn>
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
           <v-list-item-title>
-            <v-btn text>Đăng Ký</v-btn>
+            <v-btn to="./register">Đăng Ký</v-btn>
           </v-list-item-title>
         </v-list-item>
       </template>
