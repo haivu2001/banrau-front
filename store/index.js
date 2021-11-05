@@ -2,24 +2,34 @@
 //import 'material-design-icons-inconfont/dist/material-design-icons.css'
 //import 'material-design-icons-iconfont/src/material-design-icons';
 export const state = () => ({
-  itemsInCart: []
+  itemsInCart: [],
+  itemsAmounts: [],
 })
 
 export const mutations = {
   addItemToCart(state, item) {
     state.itemsInCart.push(item.id)
+  },
+  removeItemFromCart(state, item) {
+    state.itemsInCart = state.itemsInCart.filter((x) => x !== item)
+  },
+  changeAmount(state, payload) {
+    state.itemsAmounts = state.itemsAmounts.filter((x) => x.item !== payload.item)
+    state.itemsAmounts.push(payload)
   }
 }
 
 
 export const getters = {
+  itemAmounts(state) {
+    return state.itemsAmounts
+  },
   isLoggedIn(_state) {
     return false;
   },
   itemsInCart(state) {
     return state.itemsInCart
-  }
-  ,
+  },
   purchasableProducts(_state) {
     return [
       {
