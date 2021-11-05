@@ -11,6 +11,7 @@
       <v-slider ref="amountSlider" :value="amount" step="1" thumb-label="always"
                 @change="(e) => $store.commit('changeAmount',{item: product.id,amount: e})"></v-slider>
     </td>
+    <td class="text-left">{{ product.price * amount }}</td>
     <td>
       <v-btn block color="error" @click="removeFromCart">Xóa</v-btn>
     </td>

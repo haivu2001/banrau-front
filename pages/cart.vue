@@ -6,6 +6,7 @@
         <th class="text-left">Sản phẩm</th>
         <th class="text-left">Giá đơn vị</th>
         <th class="text-left">Số lượng</th>
+        <th class="text-left">Thành tiền</th>
         <th class="text-left">Hành động</th>
       </tr>
       </thead>
