@@ -12,7 +12,12 @@
         v-on="on"
       >
         <v-icon>mdi-account</v-icon>
-        Tài Khoản
+        <span v-if="!isLoggedIn">
+          Tài Khoản
+        </span>
+        <span v-else>
+          {{ $store.state.username }}
+        </span>
       </v-btn>
     </template>
 

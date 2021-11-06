@@ -4,6 +4,7 @@
 export const state = () => ({
   itemsInCart: [],
   itemsAmounts: [],
+  username: "",
 })
 
 export const mutations = {
@@ -16,6 +17,9 @@ export const mutations = {
   changeAmount(state, payload) {
     state.itemsAmounts = state.itemsAmounts.filter((x) => x.item !== payload.item)
     state.itemsAmounts.push(payload)
+  },
+  setUsername(state, username) {
+    state.username = username
   }
 }
 
@@ -24,8 +28,8 @@ export const getters = {
   itemAmounts(state) {
     return state.itemsAmounts
   },
-  isLoggedIn(_state) {
-    return false;
+  isLoggedIn(state) {
+    return state.username !== "";
   },
   itemsInCart(state) {
     return state.itemsInCart
