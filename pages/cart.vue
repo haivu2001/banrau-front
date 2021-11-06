@@ -21,7 +21,7 @@
         <th class="text-right">Tổng cộng</th>
         <th>{{ sumPrice }} đồng</th>
         <th>
-          <v-btn v-if="!isLoggedIn" block disabled small> Đăng nhập để Thanh Toán</v-btn>
+          <v-btn v-if="!isLoggedIn" block color="primary" small to="/login"> Đăng nhập để Thanh Toán</v-btn>
           <v-btn v-if="isLoggedIn" block>Thanh Toán</v-btn>
         </th>
       </tr>
