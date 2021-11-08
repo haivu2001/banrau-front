@@ -34,6 +34,7 @@
                             type="text"/>
                           <!-- chỗ này để thêm icon password prepend-icon="lock" -->
                           <v-text-field
+                            v-model="password"
                             color="green accent-5"
                             label="Mật khẩu"
                             name="Mật khẩu"
@@ -43,7 +44,7 @@
                       </v-card-text>
                       <div class="text-center mt-3">
                         <v-btn color="green accent-5" dark rounded
-                               @click="$store.commit('setUsername',username);$router.go(-1)">
+                               @click="login">
                           ĐĂNG
                           NHẬP
                         </v-btn>
@@ -130,10 +131,19 @@
 
 <script>
 export default {
-
+  methods: {
+    async login() {
+      if (await this.$store.dispatch('login', {username: this.username, password: this.password})) {
+        this.$router.go(-1)
+      } else {
+        alert("Thông tin đăng nhập sai.")
+      }
+    }
+  },
   data: () => ({
     step: 1,
-    username: ""
+    username: "",
+    password: "",
   }),
   props: {
     source: String

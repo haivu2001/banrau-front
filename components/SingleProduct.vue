@@ -5,7 +5,7 @@
     <v-card-title>{{ product.name }}</v-card-title>
     <v-rating :value="product.rating" readonly></v-rating>
     <v-card-subtitle class="subtitle-1">{{ product.price }} đồng</v-card-subtitle>
-    <v-card-text>{{ product.description }}</v-card-text>
+    <v-card-text>{{ product.desc }}</v-card-text>
     <v-spacer></v-spacer>
 
     <v-card-actions class="card-actions">
