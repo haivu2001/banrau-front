@@ -7,6 +7,7 @@ export const state = () => ({
   itemsInCart: [],
   itemsAmounts: [],
   username: "",
+  password: "",
   purchasableProducts: [],
   categories: []
 })
@@ -24,6 +25,9 @@ export const mutations = {
   },
   setUsername(state, username) {
     state.username = username
+  },
+  setPassword(state, password) {
+    state.password = password
   },
   setPurchasableProduct(state, products) {
     // alert("SET")
@@ -44,6 +48,25 @@ export const actions = {
     result = await fetch(`${HOST}/categories/`);
     result = await result.json()
     commit('setCategory', result)
+  },
+  async login({commit}, payload) {
+    let headers = new Headers();
+
+    headers.set('Authorization', 'Basic ' + btoa(payload.username + ":" + payload.password));
+
+    let result = await fetch(`${HOST}/users/`, {method: "GET", headers: headers});
+    try {
+      result = await result.json()
+      if (result.detail) {
+        return false
+      }
+      commit('setPassword', payload.password)
+      commit('setUsername', payload.username)
+      return true
+    } catch {
+      console.log("Thông tin đăng nhập sai.")
+      return false
+    }
   }
 }
 
