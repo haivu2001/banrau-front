@@ -4,7 +4,7 @@
       show-arrows-on-hover>
       <v-carousel-item src="slide1.jpg">
           <v-row class="fill-height" align="center" justify="center">
-            <h1 class="font-weight-bold white--text display-4" style="text-shadow: 2px 4px 10px black">Welcome to our shop!</h1>
+            <h1 class="nameslide font-weight-bold display-4" style="">Welcome to our shop!</h1>
           </v-row>  
       </v-carousel-item>
       <v-carousel-item src="slide2.jpg">
@@ -23,9 +23,12 @@
           </v-row>  
       </v-carousel-item>
     </v-carousel>
-    <h2 style="text-align: center; margin:50px 0 0 0; font-size: 50px">Popular Products</h2>
-    <div class="green accent-5" style="width: 400px; height: 5px; transform:translateX(71vh); margin-bottom: 50px"></div>
-     <v-card>
+    <div class="content__header" style="margin-top: 100px; margin-bottom: 100px">
+      <h3 class="content__header-heading">
+        <span class="under-line-effect under-line-effect--red">POPULAR PRODUCTS</span>
+      </h3>
+    </div>
+     <v-card style="margin-bottom: 100px">
       <v-tabs
         color="green accent-5"
         centered
@@ -117,6 +120,12 @@ export default {
           'raua.png', 'raub.png',
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
       }
     },
   computed: {
