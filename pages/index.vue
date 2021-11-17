@@ -23,9 +23,9 @@
           </v-row>  
       </v-carousel-item>
     </v-carousel>
-    <div class="content__header" style="margin-top: 100px; margin-bottom: 100px">
+    <div class="content__header" style="margin-top: 100px; margin-bottom: 70px">
       <h3 class="content__header-heading">
-        <span class="under-line-effect under-line-effect--red">POPULAR PRODUCTS</span>
+        <h1 class="under-line-effect under-line-effect--red" style="font-size: 50px">POPULAR PRODUCTS</h1>
       </h3>
     </div>
      <v-card style="margin-bottom: 100px">
