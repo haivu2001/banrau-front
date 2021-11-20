@@ -50,7 +50,7 @@
                     <v-card outlined>
                       <v-img :src="product.image" height="200px" />
                       <v-card-title>{{product.name}}</v-card-title>
-                      <v-card-subtitle>{{product.price}}</v-card-subtitle>
+                      <v-card-subtitle>{{product.price}} đồng/100g</v-card-subtitle>
                       <v-card-actions>
                         <v-btn color="green accent-5" outlined>
                         
