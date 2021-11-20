@@ -4,7 +4,7 @@
       <thead>
       <tr>
         <th class="text-left">Sản phẩm</th>
-        <th class="text-left">Giá đơn vị</th>
+        <th class="text-left">Giá đơn vị trên 100 gam</th>
         <th class="text-left">Số lượng</th>
         <th class="text-left">Thành tiền</th>
         <th class="text-left">Hành động</th>
