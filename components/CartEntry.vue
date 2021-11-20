@@ -8,8 +8,7 @@
       {{ product.price }}
     </td>
     <td>
-      <v-slider ref="amountSlider" :value="amount" step="1" thumb-label="always"
-                @change="(e) => $store.commit('changeAmount',{item: product.id,amount: e})"></v-slider>
+      <v-text-field type=number value=amount @change="(e) => $store.commit('changeAmount',{item: product.id,amount: e})"></v-text-field>
     </td>
     <td class="text-left">{{ product.price * amount }}</td>
     <td>
