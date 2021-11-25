@@ -3,6 +3,10 @@
     color: white;
 }
 
+.text-white .v-text-field__slot input {
+    color: white!important;
+}
+
 .under-line-effect {
     position: relative;
     display: inline-block;

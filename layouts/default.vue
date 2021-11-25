@@ -8,7 +8,7 @@
         </v-btn>
         <AccountMenu :isLoggedIn="isLoggedIn"></AccountMenu>
         <v-spacer></v-spacer>
-        <!-- <v-responsive class="mr-6" max-width="260">
+        <v-responsive class="mr-6" max-width="260">
           <v-text-field
             dense
             flat
@@ -16,24 +16,7 @@
             rounded
             solo-inverted
           ></v-text-field>
-        </v-responsive> -->
-        <!-- <div class = "navbar-item">
-        <form method = "get" action="/search">
-        <div class = "field has-addons">
-          <div class = "control">
-              <input type="text" class = "input" placeholder="Bạn cần tìm gì?" name = "query">
-          </div>
-
-          <div class = "control">
-              <button class = "button is-success">
-                  <span class = "icon">
-                    <i class="fas fa-search"></i>
-                  </span>
-              </button>
-          </div>
-        </div>
-        </form>
-        </div> -->
+        </v-responsive>
         <v-badge :content="numItemsInCart" bottom color="secondary" overlap>
           <v-btn dark fab small text to="/cart">
             <v-icon>
