@@ -37,6 +37,11 @@
       <template v-else>
         <v-list-item>
           <v-list-item-title>
+            <v-btn to="./user">Tài khoản</v-btn>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
             <v-btn @click="$store.commit('setUsername','')">Đăng Xuất</v-btn>
           </v-list-item-title>
         </v-list-item>
