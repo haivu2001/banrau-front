@@ -11,6 +11,7 @@
                 <v-text-field v-if="!isEditing"
                     flat
                     solo
+                    readonly
                     :value = "details"
                 ></v-text-field>
                 <v-text-field v-else

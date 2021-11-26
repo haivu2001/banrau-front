@@ -41,6 +41,7 @@
                                         <v-btn 
                                             depressed 
                                             color="red"
+                                            @click="deleteAcc"
                                         >
                                             <span class="white--text">Delete Account</span>
                                         </v-btn>
@@ -56,11 +57,10 @@
                                         :details="field.value"
                                         :isEditing="isEditing"
                                     ></info-field> -->
-                                        <info-field field="Username" :details="username" :isEditing=isEditing></info-field>
+                                        <info-field field="Username" :details="username" :isEditing=false></info-field>
                                         <info-field field="First Name" :details="first_name" :isEditing=isEditing></info-field>
                                         <info-field field="Last Name" :details="last_name" :isEditing=isEditing></info-field>
                                         <info-field field="Email" :details="email" :isEditing=isEditing></info-field>
-                                        <info-field field="Phone number" :details="phone" :isEditing=isEditing></info-field>
                                     </v-card-text>
                                     <v-divider></v-divider>
                                     <v-card-actions >
@@ -105,10 +105,10 @@
 <script>
 import InfoField from '../components/InfoField.vue';
 import OrderTable from '../components/OrderTable.vue';
+import {mapGetters} from 'vuex'
 
 export default {
     components: { OrderTable, InfoField },
-    props : ["user"],
     data: function(){
         return {
             active: "profile",
@@ -116,6 +116,7 @@ export default {
                 {id: 0, href: "#profile", title: "Profile"},
                 {id: 1, href: "#history", title: "Order History"},
             ],
+            isEditing : false,
             // fields: [
             //     {id:1, key : "Username", value : },
             //     {id:2, key : "First name", value : },
@@ -123,13 +124,13 @@ export default {
             //     {id:4, key : "Email", value : },
             //     {id:5, key : "Phone number", },
             // ],
-            avatar: "Huh?",
-            username : "huh1345",
-            first_name: "Excuse me",
-            last_name: "What?",
-            email: "huh@email.com",
-            phone: "0123456789",
-            isEditing : false,
+            // avatar: "Huh?",
+            // username : "huh1345",
+            // first_name: "Excuse me",
+            // last_name: "What?",
+            // email: "huh@email.com",
+            // phone: "0123456789",
+            
             // Order:{id, date, method, shipto, status, action}
             order_example :[
                 { id : 1, date : "11/15/2021", total : 200000, method : "Cash", status : "complete"},
@@ -150,22 +151,24 @@ export default {
         }
     },
     computed: {
-        full_name: function() {
-            return this.first_name + ' ' + this.last_name;
-        },
-        order: function() {
-            //load user order from database
+        ...mapGetters(['first_name', 'last_name', 'username', 'email']),
+        avatar(){
+            return this.username[0]
         }
     },
 
     methods: {
-        edit : async function(){
+        edit(){
             this.isEditing = true
         },
 
-        save : function() {
+        save() {
             this.isEditing = false
             //update user info in database
+        },
+        deleteAcc(){
+            console.log("DELETING...")
+            this.$store.dispatch('deleteAccount', {'username' : this.username})
         }
     }
 }
