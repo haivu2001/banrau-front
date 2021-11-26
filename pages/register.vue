@@ -22,32 +22,38 @@
                                                       <v-icon>mdi-linkedin</v-icon>
                                                   </v-btn>
                                               </div>
-                                              <v-form>
+                                              <v-form v-model="valid">
                                                   <!-- chỗ này để thêm icon hình người prepend-icon="person" -->
                                                   <v-text-field 
+																									v-model="name"
                                                   label="Họ và tên" 
                                                   name="Họ và tên" 
                                                   type = "text"
+																									:rules="nameRules"
                                                   prepend-icon="mdi-account"
                                                   color ="green accent-5"/>
                                                    <!-- chỗ này để thêm icon mail prepend-icon="email" -->
                                                   <v-text-field 
+																									v-model="email"
                                                   label="Email" 
                                                   name="Email" 
                                                   type = "text"
+																									:rules="emailRules"
                                                   prepend-icon="mdi-email"
                                                   color ="green accent-5"/>
                                                   <!-- chỗ này để thêm icon password prepend-icon="lock" -->
                                                   <v-text-field 
+																									v-model="password"
                                                   label="Mật khẩu" 
                                                   name="Mật khẩu" 
                                                   type = "password"
+																									:rules="passwordRules"
                                                   prepend-icon="mdi-lock"
                                                   color ="green accent-5"/>
                                               </v-form>
                                           </v-card-text>
                                           <div class="text-center mt-n5">
-                                              <v-btn rounded color ="green accent-5" dark to="/">ĐĂNG KÝ</v-btn>
+                                            <v-btn rounded color ="green accent-5" @click="submit" :disabled="!valid">ĐĂNG KÝ</v-btn>
                                           </div>
                                       </v-col>
                                       <!-- Tạo 1 phần chuyển tiếp màu xanh -->
@@ -106,7 +112,7 @@
                                               </v-form>
                                           </v-card-text>
                                           <div class="text-center mt-3">
-                                              <v-btn rounded color ="green accent-5" dark>ĐĂNG NHẬP</v-btn>
+                                              <v-btn rounded color ="green accent-5" dark @click="login">ĐĂNG NHẬP</v-btn>
                                           </div>
                                            <div class="text-center mt-3">
                                                <v-btn text class="text-center mt-3" color ="green accent-5">Quên mật khẩu?</v-btn>
@@ -128,11 +134,52 @@ import {mapGetters} from "vuex";
 export default {
   
   data: () => ({
-      step: 1
+      step: 1,
+			valid: false,
+			name: '',
+      nameRules: [
+        v => !!v || 'Vui lòng nhập tên của bạn',
+      ],
+      email: '',
+			emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      password: '',
+			passwordRules:[
+				v => !!v || 'Vui lòng nhập mật khẩu',
+				v => (v && v.length >= 6 && v.length <= 20) || 'Mật khẩu phải có độ dài 8-20',
+			]
   }),
   props:{
       source: String
-  }
+  },
+	methods: {
+		async submit () {
+      console.log("Submiting...")
+      let result = await this.$store.dispatch('register', 
+      {
+        name: this.name,
+        username : this.name,
+        email : this.email,
+        password : this.password
+      })
+      console.log(result)
+      if (result) {
+        this.$router.push('/')
+      } else {
+        alert("Tên người dùng đã tồn tại")
+      }
+
+		},
+    async login() {
+      if (await this.$store.dispatch('login', {username: this.username, password: this.password})) {
+        this.$router.go(-1)
+      } else {
+        alert("Thông tin đăng nhập sai.")
+      }
+    }
+	},
 }
 </script>
 
