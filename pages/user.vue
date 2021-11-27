@@ -29,42 +29,84 @@
                             <v-tab-item id="profile">
                                 <v-card>
                                     <v-toolbar color="elevation-0">
-                                        <v-card-title>USER PROFILE</v-card-title>
+                                        <v-card-title>Thông tin tài khoản</v-card-title>
                                         <v-spacer></v-spacer>
                                         <v-btn 
                                             depressed color="white" 
                                             :disabled = isEditing
                                             @click="edit"
                                         >
-                                            <span class="green--text">Edit Profile</span>
+                                            <span class="green--text">Chỉnh sửa</span>
                                         </v-btn>
                                         <v-btn 
                                             depressed 
                                             color="red"
                                             @click="deleteAcc"
                                         >
-                                            <span class="white--text">Delete Account</span>
+                                            <span class="white--text">Xóa tài khoản</span>
                                         </v-btn>
                                     </v-toolbar>
                                     <v-divider></v-divider>
                                     
                                     <v-card-text>
                                     <!-- Display user infomation -->
-                                    <!-- <info-field
-                                        v-for="field in fields"
-                                        :key="field.id"
-                                        :field="field.key"
-                                        :details="field.value"
-                                        :isEditing="isEditing"
-                                    ></info-field> -->
-                                        <info-field field="Username" :details="username" :isEditing=false></info-field>
-                                        <info-field field="First Name" :details="first_name" :isEditing=isEditing></info-field>
-                                        <info-field field="Last Name" :details="last_name" :isEditing=isEditing></info-field>
-                                        <info-field field="Email" :details="email" :isEditing=isEditing></info-field>
+                                        
+                                        <v-row>
+                                            <v-col cols="4">
+                                                <v-subheader>Username</v-subheader>
+                                            </v-col>
+                                            <v-col cols="8">
+                                                <v-text-field
+                                                    solo
+                                                    flat
+                                                    readonly
+                                                    :value = username
+                                                ></v-text-field>
+                                            </v-col>
+                                        </v-row>
+                                        <v-form readonly>
+                                            <v-row>
+                                                <v-col cols="4">
+                                                    <v-subheader>Họ</v-subheader>
+                                                </v-col>
+                                                <v-col cols="8">
+                                                    <v-text-field
+                                                        :value="first_name"
+                                                        flat
+                                                        solo
+                                                    ></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="4">
+                                                    <v-subheader>Tên</v-subheader>
+                                                </v-col>
+                                                <v-col cols="8">
+                                                    <v-text-field
+                                                        flat
+                                                        solo
+                                                        :value="last_name"
+                                                    ></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="4">
+                                                    <v-subheader>Email</v-subheader>
+                                                </v-col>
+                                                <v-col cols="8">
+                                                    <v-text-field
+                                                        flat
+                                                        solo
+                                                        :value="email"
+                                                    ></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                        </v-form>
                                     </v-card-text>
                                     <v-divider></v-divider>
                                     <v-card-actions >
-                                        <v-btn depressed color="white"><span class="green--text">Change password</span></v-btn>
+                                        <!-- Change Password Dialog -->
+                                        <change-password></change-password>
                                         <v-spacer></v-spacer>
                                         <v-btn v-if="isEditing"
                                             depressed 
@@ -105,32 +147,25 @@
 <script>
 import InfoField from '../components/InfoField.vue';
 import OrderTable from '../components/OrderTable.vue';
+import changePassword from '../components/ChangePassword.vue'
 import {mapGetters} from 'vuex'
 
 export default {
-    components: { OrderTable, InfoField },
+    components: { OrderTable, InfoField, changePassword },
     data: function(){
         return {
             active: "profile",
             tabs: [
-                {id: 0, href: "#profile", title: "Profile"},
-                {id: 1, href: "#history", title: "Order History"},
+                {id: 0, href: "#profile", title: "Thông tin Tài khoản"},
+                {id: 1, href: "#history", title: "Lịch sử đơn hàng"},
             ],
             isEditing : false,
-            // fields: [
-            //     {id:1, key : "Username", value : },
-            //     {id:2, key : "First name", value : },
-            //     {id:3, key : "Last name", value : },
-            //     {id:4, key : "Email", value : },
-            //     {id:5, key : "Phone number", },
-            // ],
-            // avatar: "Huh?",
-            // username : "huh1345",
-            // first_name: "Excuse me",
-            // last_name: "What?",
-            // email: "huh@email.com",
-            // phone: "0123456789",
             
+            emailRules: [
+                v => !!v || 'Vui lòng nhập email',
+                v => /.+@.+\..+/.test(v) || 'Vui lòng nhập đúng định dạng email',
+                ],
+
             // Order:{id, date, method, shipto, status, action}
             order_example :[
                 { id : 1, date : "11/15/2021", total : 200000, method : "Cash", status : "complete"},
@@ -162,15 +197,12 @@ export default {
             this.isEditing = true
         },
 
-        save() {
-            this.isEditing = false
-            //update user info in database
-        },
         deleteAcc(){
             console.log("DELETING...")
             this.$store.dispatch('deleteAccount', {'username' : this.username})
-        }
-    }
+        },
+
+    },
 }
 </script>
 
