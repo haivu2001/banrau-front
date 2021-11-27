@@ -6,7 +6,7 @@ const HOST = 'http://localhost:8000';
 export const state = () => ({
   //Current user info
   username: "",
-  password: "",
+  password : "",
   first_name: "",
   last_name: "",
   email: "",
@@ -25,10 +25,9 @@ export const mutations = {
     state.password = password
   },
   setUserInfo(state, user){
-    state.username = user.username,
-    state.password = user.password,
     state.first_name = user.first_name,
-    state.last_name = user.last_name
+    state.last_name = user.last_name,
+    state.email = user.email
   },
   resetUserState(state) {
     state.username = '';
@@ -80,7 +79,7 @@ export const actions = {
       if (result.detail) {
         return false
       }
-      console.log(result);
+      // console.log(result);
       commit('setPassword', payload.password);
       commit('setUsername', payload.username);
       return true
@@ -89,9 +88,9 @@ export const actions = {
       return false
     }
   },
+
+
   async register({commit}, payload) {
-    console.log(payload)
-    //send POST request to backend
     let form = new FormData()
     for (let key in payload){
       form.append(key, payload[key])
@@ -100,11 +99,10 @@ export const actions = {
       let result = await fetch(`${HOST}/user/register/`, {method : 'POST', body : form})
       result = await result.json()
       if (result.message){
-        console.log("result.message");
-        console.log(result.message);
         return false;
       } else {
         commit('setUserInfo', result);
+        commit('setUsername', result.username)
         return true;
       }
     } catch(err) {
@@ -114,10 +112,52 @@ export const actions = {
    
   },
 
-  async updateProfile({commit}, payload){
+
+  async updateProfile({commit, state}, payload){
     //send POST request to backend
     //waiting for the result
     //handle result
+    let form = new FormData()
+    form.append('username', state.username)
+    for (let key in payload){
+      form.append(key, payload[key])
+    }
+    try{
+      let result = await fetch(`${HOST}/user/update/`, {method : 'POST', body : form})
+      result = await result.json()
+      if (result.error){
+        console.log("Cannot upadate profile");
+        return false;
+      } else {
+        commit('setUserInfo', payload);
+        return true;
+      }
+    } catch(err) {
+      console.log(err)
+      return false;
+    }
+  },
+
+  async changePassword( {state} , payload){//user/change_password/
+    console.log(payload)
+    let form = new FormData()
+    form.append('username', state.username)
+    form.append('oldpassword', payload.oldpassword)
+    form.append('newpassword', payload.newpassword)
+    try{
+      let result = await fetch(`${HOST}/user/change_password/`, {method : 'POST', body : form})
+      result = await result.json()
+      if (result.error){
+        console.log("Cannot change password");
+        return false;
+      } else {
+        console.log(result.message)
+        return true;
+      }
+    } catch(err) {
+      console.log(err)
+      return false;
+    }
   },
 
   async deleteAccount({commit}, payload){
