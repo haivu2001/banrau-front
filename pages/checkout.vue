@@ -1,22 +1,10 @@
 <template>
-  <div class="container">
+  <v-container>
     <div class="row">
       <div class="col-md-4 order-md-2 mb-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-muted">Giỏ hàng của bạn</span>
-          <span class="badge badge-secondary badge-pill"></span>
-        </h4>
-        <form class="border:1px">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Mã giảm giá" />
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-secondary">Đổi</button>
-            </div>
-          </div>
-        </form>
       </div>
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Địa chỉ thanh toán</h4>
+        <h4 class="mb-3">Form thanh toán</h4>
         <form class="needs-validation" novalidate="">
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -37,20 +25,6 @@
                 id="lastName"
                 placeholder=""
                 value=""
-              />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="username">Tên đăng nhập</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
-              </div>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                placeholder="Username"
               />
             </div>
           </div>
@@ -183,7 +157,7 @@
                 id="cc-name"
                 placeholder=""
               />
-              <small class="text-muted">Tên đầy đủ được ghi trên thẻ</small>
+              <!-- <small class="text-muted">Tên đầy đủ được ghi trên thẻ</small> -->
             </div>
             <div class="col-md-6 mb-3">
               <label for="cc-number">Số thẻ</label>
@@ -216,21 +190,45 @@
             </div>
           </div>
           <hr class="mb-4" />
-          <button class="btn btn-primary btn-lg btn-block" type="submit" to="/index">
-            Tiếp tục thanh toán
-          </button>
+          <v-btn  block color="primary" to = "/">Hoàn thành Thanh Toán</v-btn>
         </form>
       </div>
     </div>
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-      <p class="mb-1">© 2020 - 2022 Shop Bán Rau</p>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Quyền riêng tư</a></li>
-        <li class="list-inline-item"><a href="#">Điều khoản</a></li>
-        <li class="list-inline-item"><a href="#">Hỗ trợ</a></li>
-      </ul>
-    </footer>
-  </div>
+    
+    <!-- <v-footer
+    dark
+    padless
+  >
+    <v-card
+      flat
+      tile
+      class="green accent-5 lighten-1 white--text text-center"
+    >
+      <v-card-text>
+        <v-btn
+          v-for="icon in icons"
+          :key="icon"
+          class="mx-4 white--text"
+          icon
+        >
+          <v-icon size="24px">
+            {{ icon }}
+          </v-icon>
+        </v-btn>
+      </v-card-text>
+
+      <v-card-text class="white--text pt-0">
+        Mua rau sạch online đang là hình thức mua hàng nhận được nhiều sự quan tâm nhất của khách hàng hiện nay, hiểu và nắm được nhu cầu của phần đông người tiêu dùng chúng tôi đã nhập rất nhiều người hàng rau sạch về cửa hàng và phục vụ cho nhu cầu của tất cả mọi khách hàng một cách nhanh chính và thuận tiện nhất.
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-text class="white--text">
+        {{ new Date().getFullYear() }} — <strong>Cửa hàng rau củ quả</strong>
+      </v-card-text>
+    </v-card>
+  </v-footer> -->
+  </v-container>
 </template>
 
 <script>
