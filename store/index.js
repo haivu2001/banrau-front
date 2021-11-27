@@ -83,7 +83,6 @@ export const actions = {
       console.log(result);
       commit('setPassword', payload.password);
       commit('setUsername', payload.username);
-      commit('setUserInfo', result[0]);
       return true
     } catch {
       console.log("Thông tin đăng nhập sai.")
