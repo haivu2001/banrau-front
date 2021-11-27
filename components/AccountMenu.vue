@@ -42,7 +42,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-title>
-            <v-btn @click="$store.commit('setUsername','')">Đăng Xuất</v-btn>
+            <v-btn @click="logout">Đăng Xuất</v-btn>
           </v-list-item-title>
         </v-list-item>
       </template>
@@ -52,6 +52,12 @@
 
 <script>
 export default {
-  props: ['isLoggedIn']
+  props: ['isLoggedIn'],
+  methods: {
+    logout(){
+      this.$store.commit('setUsername','');
+      this.$router.push('/')
+    }
+  }
 }
 </script>

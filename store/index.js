@@ -25,8 +25,6 @@ export const mutations = {
     state.password = password
   },
   setUserInfo(state, user){
-    state.username = user.username,
-    state.password = user.password,
     state.first_name = user.first_name,
     state.last_name = user.last_name,
     state.email = user.email
@@ -90,6 +88,8 @@ export const actions = {
       return false
     }
   },
+
+
   async register({commit}, payload) {
     let form = new FormData()
     for (let key in payload){
@@ -102,6 +102,7 @@ export const actions = {
         return false;
       } else {
         commit('setUserInfo', result);
+        commit('setUsername', result.username)
         return true;
       }
     } catch(err) {
@@ -111,11 +112,13 @@ export const actions = {
    
   },
 
-  async updateProfile({commit}, payload){
+
+  async updateProfile({commit, state}, payload){
     //send POST request to backend
     //waiting for the result
     //handle result
     let form = new FormData()
+    form.append('username', state.username)
     for (let key in payload){
       form.append(key, payload[key])
     }
@@ -126,7 +129,7 @@ export const actions = {
         console.log("Cannot upadate profile");
         return false;
       } else {
-        commit('setUserInfo', result);
+        commit('setUserInfo', payload);
         return true;
       }
     } catch(err) {

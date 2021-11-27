@@ -39,7 +39,7 @@
 								<v-text-field
 									type="password"
 									v-model="new_pass"
-									:rules="[rules.required]"
+									:rules="[rules.required, rules.range]"
 								></v-text-field>
 							</v-col>
 						</v-row>
@@ -88,17 +88,19 @@ export default {
 						new_pass2 : '', 
 						rules: {
 							required: value => !!value || 'Vui lòng nhập mật khẩu',
-							match : v => (!!v  && v) === this.new_pass  || "Vui lòng nhập trùng khớp với mật khẩu mới"
+							match : v => (!!v  && v) === this.new_pass  || "Vui lòng nhập trùng khớp với mật khẩu mới",
+              range : v => v && v.length >= 8 && v.length <= 20 || "Độ dài yêu cầu của mật khẩu là 8-20"
 						},
         }
     },
     methods:{
 				async clearForm(){
-					this.dialog = false,
 					this.old_pass = '';
 					this.new_pass = '';
+          this.new_pass2 = '';
 				},
         async submitPassword(){
+            this.dialog = false;
             let result = await this.$store.dispatch('changePassword', {
 							'oldpassword' : this.old_pass,
 							'newpassword' : this.new_pass,

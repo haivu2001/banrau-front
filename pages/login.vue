@@ -93,9 +93,9 @@
                         <v-form v-model="valid">
                           <!-- chỗ này để thêm icon hình người prepend-icon="person" -->
                           <v-text-field 
-                          v-model="name"
-                          label="Họ và tên" 
-                          name="Họ và tên" 
+                          v-model="res_username"
+                          label="Tên đăng nhập" 
+                          name="Tên đăng nhập" 
                           type = "text"
                           :rules="nameRules"
                           prepend-icon="mdi-account"
@@ -111,7 +111,7 @@
                           color ="green accent-5"/>
                           <!-- chỗ này để thêm icon password prepend-icon="lock" -->
                           <v-text-field 
-                          v-model="password"
+                          v-model="res_password"
                           label="Mật khẩu" 
                           name="Mật khẩu" 
                           type = "password"
@@ -149,10 +149,9 @@ export default {
       console.log("Submiting...")
       let result = await this.$store.dispatch('register', 
       {
-        name: this.name,
-        username : this.name,
+        username : this.res_username,
         email : this.email,
-        password : this.password
+        password : this.res_password
       })
       console.log(result)
       if (result) {
@@ -169,7 +168,7 @@ export default {
     password: "",
 
     valid: false,
-    name: '',
+    res_username: '',
     nameRules: [
       v => !!v || 'Vui lòng nhập tên của bạn',
     ],
@@ -178,10 +177,10 @@ export default {
       v => !!v || 'E-mail is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
-    password: '',
+    res_password: '',
     passwordRules:[
       v => !!v || 'Vui lòng nhập mật khẩu',
-      v => (v && v.length >= 6 && v.length <= 20) || 'Mật khẩu phải có độ dài 8-20',
+      v => (v && v.length >= 8 && v.length <= 20) || 'Mật khẩu phải có độ dài 8-20',
     ]
   }),
   props: {

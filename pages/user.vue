@@ -11,7 +11,7 @@
                                         size="100%"
                                     ><span class="white--text text-h3">{{ avatar }}</span></v-avatar>
                             </v-responsive>
-                            <p class="text-center text-h5"> {{full_name}} </p>
+                            <p class="text-center text-h5"> {{username}} </p>
                             <!--  -->
                             <v-tabs vertical  v-model="active">
                                 <v-tab
@@ -31,13 +31,14 @@
                                     <v-toolbar color="elevation-0">
                                         <v-card-title>Thông tin tài khoản</v-card-title>
                                         <v-spacer></v-spacer>
-                                        <v-btn 
+                                        <!-- <v-btn 
                                             depressed color="white" 
                                             :disabled = isEditing
                                             @click="edit"
                                         >
                                             <span class="green--text">Chỉnh sửa</span>
-                                        </v-btn>
+                                        </v-btn> -->
+                                        <EditProfileDialog btn-color='white' btn-text-color='green'></EditProfileDialog>
                                         <v-btn 
                                             depressed 
                                             color="red"
@@ -45,26 +46,25 @@
                                         >
                                             <span class="white--text">Xóa tài khoản</span>
                                         </v-btn>
+                                        
                                     </v-toolbar>
                                     <v-divider></v-divider>
                                     
                                     <v-card-text>
                                     <!-- Display user infomation -->
-                                        
-                                        <v-row>
-                                            <v-col cols="4">
-                                                <v-subheader>Username</v-subheader>
-                                            </v-col>
-                                            <v-col cols="8">
-                                                <v-text-field
-                                                    solo
-                                                    flat
-                                                    readonly
-                                                    :value = username
-                                                ></v-text-field>
-                                            </v-col>
-                                        </v-row>
                                         <v-form readonly>
+                                            <v-row>
+                                                <v-col cols="4">
+                                                    <v-subheader>Username</v-subheader>
+                                                </v-col>
+                                                <v-col cols="8">
+                                                    <v-text-field
+                                                        solo
+                                                        flat
+                                                        :value = username
+                                                    ></v-text-field>
+                                                </v-col>
+                                            </v-row>
                                             <v-row>
                                                 <v-col cols="4">
                                                     <v-subheader>Họ</v-subheader>
@@ -107,14 +107,6 @@
                                     <v-card-actions >
                                         <!-- Change Password Dialog -->
                                         <change-password></change-password>
-                                        <v-spacer></v-spacer>
-                                        <v-btn v-if="isEditing"
-                                            depressed 
-                                            color="white" 
-                                            @click="save"
-                                        >
-                                            <span class="red--text" >Save</span>
-                                        </v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-tab-item>
@@ -145,13 +137,14 @@
 </template>
 
 <script>
-import InfoField from '../components/InfoField.vue';
 import OrderTable from '../components/OrderTable.vue';
-import changePassword from '../components/ChangePassword.vue'
+import ChangePassword from '../components/ChangePassword.vue';
+import EditProfileDialog from '../components/EditProfileDialog.vue'
 import {mapGetters} from 'vuex'
+import errorVue from '../layouts/error.vue';
 
 export default {
-    components: { OrderTable, InfoField, changePassword },
+    components: { OrderTable, ChangePassword, EditProfileDialog },
     data: function(){
         return {
             active: "profile",
@@ -193,16 +186,18 @@ export default {
     },
 
     methods: {
-        edit(){
-            this.isEditing = true
-        },
-
         deleteAcc(){
             console.log("DELETING...")
             this.$store.dispatch('deleteAccount', {'username' : this.username})
+            this.$router.push('/')
         },
 
     },
+    beforeCreate: function(){
+      if (this.$store.getters.isLoggedIn === false){
+            this.$nuxt.error({ 'statusCode': 404, message: 'Page not found' })
+        }
+    }
 }
 </script>
 
