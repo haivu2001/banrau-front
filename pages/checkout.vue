@@ -60,9 +60,7 @@
                 id="firstName"
                 placeholder=""
                 value=""
-                required=""
               />
-              <div class="invalid-feedback">Yêu cầu tên hợp lệ !</div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Họ</label>
@@ -72,9 +70,7 @@
                 id="lastName"
                 placeholder=""
                 value=""
-                required=""
               />
-              <div class="invalid-feedback">Yêu cầu họ hợp lệ !</div>
             </div>
           </div>
           <div class="mb-3">
@@ -88,11 +84,7 @@
                 class="form-control"
                 id="username"
                 placeholder="Username"
-                required=""
               />
-              <div class="invalid-feedback" style="width: 100%;">
-                Yêu cầu tên đăng nhập !
-              </div>
             </div>
           </div>
           <div class="mb-3">
@@ -105,9 +97,6 @@
               id="email"
               placeholder="you@example.com"
             />
-            <div class="invalid-feedback">
-              Hãy điền địa chỉ email hợp lệ để nhận hàng
-            </div>
           </div>
           <div class="mb-3">
             <label for="address">Địa chỉ</label>
@@ -116,9 +105,7 @@
               class="form-control"
               id="address"
               placeholder="Đường, Quận"
-              required=""
             />
-            <div class="invalid-feedback">Hãy điền địa chỉ hợp lệ</div>
           </div>
           <div class="mb-3">
             <label for="address2"
@@ -137,9 +124,8 @@
               <select
                 class="custom-select d-block w-100"
                 id="country"
-                required=""
               >
-                <option value="">Chọn...</option>
+                <option value="">Chọn</option>
                 <option>Hà nội</option>
                 <option>TP.HCM</option>
               </select>
@@ -149,9 +135,8 @@
               <select
                 class="custom-select d-block w-100"
                 id="state"
-                required=""
               >
-                <option value="">Chọn...</option>
+                <option value="">Chọn</option>
                 <option>Thủ đức</option>
               </select>
             </div>
@@ -162,9 +147,7 @@
                 class="form-control"
                 id="zip"
                 placeholder=""
-                required=""
               />
-              <div class="invalid-feedback">Yêu cầu mã bưu chính !</div>
             </div>
           </div>
           <hr class="mb-4" />
@@ -198,7 +181,6 @@
                 type="radio"
                 class="custom-control-input"
                 checked=""
-                required=""
               />
               <label class="custom-control-label" for="credit"
                 >Thẻ ngân hàng</label
@@ -210,7 +192,6 @@
                 name="paymentMethod"
                 type="radio"
                 class="custom-control-input"
-                required=""
               />
               <label class="custom-control-label" for="debit">Ví điện tử</label>
             </div>
@@ -220,7 +201,6 @@
                 name="paymentMethod"
                 type="radio"
                 class="custom-control-input"
-                required=""
               />
               <label class="custom-control-label" for="paypal"
                 >Thanh toán khi nhận hàng</label
@@ -235,10 +215,8 @@
                 class="form-control"
                 id="cc-name"
                 placeholder=""
-                required=""
               />
               <small class="text-muted">Tên đầy đủ được ghi trên thẻ</small>
-              <div class="invalid-feedback">Yêu cầu tên hợp lệ !</div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="cc-number">Số thẻ</label>
@@ -247,9 +225,7 @@
                 class="form-control"
                 id="cc-number"
                 placeholder=""
-                required=""
               />
-              <div class="invalid-feedback">Yêu cầu số thẻ hợp lệ !</div>
             </div>
           </div>
           <div class="row">
@@ -260,9 +236,7 @@
                 class="form-control"
                 id="cc-expiration"
                 placeholder=""
-                required=""
               />
-              <div class="invalid-feedback">Yêu cầu ngày hết hạn hợp lệ !</div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="cc-cvv">CVV</label>
@@ -271,7 +245,6 @@
                 class="form-control"
                 id="cc-cvv"
                 placeholder=""
-                required=""
               />
               <div class="invalid-feedback">Yêu cầu CVV hợp lệ</div>
             </div>
@@ -295,31 +268,7 @@
 </template>
 
 <script>
-(function() {
-  "use strict";
-   globalThis.window.addEventListener(
-    "load",
-    function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName("needs-validation");
-      // Loop over them and prevent submission
-      Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener(
-          "submit",
-          function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add("was-validated");
-          },
-          false
-        );
-      });
-    },
-    false
-   );
-})();
+
 </script>
 
 <style scoped>
