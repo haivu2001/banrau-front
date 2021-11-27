@@ -6,40 +6,7 @@
           <span class="text-muted">Giỏ hàng của bạn</span>
           <span class="badge badge-secondary badge-pill"></span>
         </h4>
-        <ul class="list-group mb-3 sticky-top">
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Sản phẩm 1</h6>
-              <small class="text-muted">Mô tả</small>
-            </div>
-            <span class="text-muted">20.000 đ</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Sản phẩm 2</h6>
-              <small class="text-muted">Mô tả</small>
-            </div>
-            <span class="text-muted">20.000 đ</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Sản phẩm 3</h6>
-              <small class="text-muted">Mô tả</small>
-            </div>
-            <span class="text-muted">20.000 đ</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Tổng tiền (VNĐ)</span>
-            <strong>60.000 đ</strong>
-          </li>
-        </ul>
-        <form class="card p-2">
+        <form class="border:1px">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Mã giảm giá" />
             <div class="input-group-append">
@@ -249,7 +216,7 @@
             </div>
           </div>
           <hr class="mb-4" />
-          <button class="btn btn-primary btn-lg btn-block" type="submit">
+          <button class="btn btn-primary btn-lg btn-block" type="submit" to="/index">
             Tiếp tục thanh toán
           </button>
         </form>
