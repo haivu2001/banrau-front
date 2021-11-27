@@ -4,8 +4,8 @@
       <thead>
       <tr>
         <th class="text-left">Sản phẩm</th>
-        <th class="text-left">Giá đơn vị</th>
-        <th class="text-left">Số lượng</th>
+        <th class="text-left">Giá đơn vị trên 100 gam</th>
+        <th class="text-left">Số lượng (10 = 1kg)</th>
         <th class="text-left">Thành tiền</th>
         <th class="text-left">Hành động</th>
       </tr>
@@ -22,7 +22,7 @@
         <th>{{ sumPrice }} đồng</th>
         <th>
           <v-btn v-if="!isLoggedIn" block color="warning" small to="/login"> Đăng nhập để Thanh Toán</v-btn>
-          <v-btn v-if="isLoggedIn" block color="primary">Thanh Toán</v-btn>
+          <v-btn v-if="isLoggedIn" block color="primary" to = "/checkout">Thanh Toán</v-btn>
         </th>
       </tr>
       </tfoot>

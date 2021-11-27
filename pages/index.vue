@@ -4,7 +4,7 @@
       show-arrows-on-hover>
       <v-carousel-item src="slide1.jpg">
           <v-row class="fill-height" align="center" justify="center">
-            <h1 class="font-weight-bold white--text display-4" style="text-shadow: 2px 4px 10px black">Welcome to our shop!</h1>
+            <h1 class="nameslide font-weight-bold display-4" style="">Welcome to our shop!</h1>
           </v-row>  
       </v-carousel-item>
       <v-carousel-item src="slide2.jpg">
@@ -23,38 +23,94 @@
           </v-row>  
       </v-carousel-item>
     </v-carousel>
-    <h2 style="text-align: center; margin:50px 0 0 0; font-size: 50px">Popular Products</h2>
-    <div class="green accent-5" style="width: 400px; height: 5px; transform:translateX(71vh); margin-bottom: 50px"></div>
-     <v-card>
+    <div class="content__header" style="margin-top: 100px; margin-bottom: 70px">
+      <h3 class="content__header-heading">
+        <h1 class="under-line-effect under-line-effect--red" style="font-size: 50px">HÀNG MỚI VỀ</h1>
+      </h3>
+    </div>
+     <v-card style="margin-bottom: 100px">
       <v-tabs
         color="green accent-5"
         centered
       >
-        <v-tab>Vegatable</v-tab>
-        <v-tab>Fruit</v-tab>
-        <v-tab>Drink</v-tab>
+        <v-tab>Rau</v-tab>
+        <v-tab>Củ</v-tab>
+        <v-tab>Quả</v-tab>
 
-        <v-tab-item
-          v-for="n in 3"
-          :key="n"
-        >
+        <v-tab-item>
           <v-container fluid>
             
             <v-row>
-              <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
-                <v-row>
-                  <v-col sm="6" md="4" v-for="product in purchasableProducts" :key="product.id">
-                    <v-card outlined>
-                      <v-img :src="product.image" height="200px" />
+              <v-col >
+                <v-row style="margin-left: 20px; margin-right: 20px">
+                  <v-col class="col-md-4 mt-6" v-for="product in purchasableProducts.slice(4,7)" :key="product.id">
+                    <!-- <v-card outlined> -->
+                      <!-- <v-img :src="product.image" height="200px" />
                       <v-card-title>{{product.name}}</v-card-title>
-                      <v-card-subtitle>{{product.price}}</v-card-subtitle>
+                      <v-card-subtitle>{{product.price}} đồng/100g</v-card-subtitle>
                       <v-card-actions>
                         <v-btn color="green accent-5" outlined>
                         
                           Thêm vào giỏ hàng
                         </v-btn>
-                      </v-card-actions>
-                    </v-card>
+                      </v-card-actions> -->
+                      <SingleProduct :product="product"></SingleProduct>
+                      
+                    <!-- </v-card> -->
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-container fluid>
+            
+            <v-row>
+              <v-col >
+                <v-row style="margin-left: 20px; margin-right: 20px">
+                  <v-col class="col-md-4 mt-6" v-for="product in purchasableProducts.slice(10,13)" :key="product.id">
+                    <!-- <v-card outlined> -->
+                      <!-- <v-img :src="product.image" height="200px" />
+                      <v-card-title>{{product.name}}</v-card-title>
+                      <v-card-subtitle>{{product.price}} đồng/100g</v-card-subtitle>
+                      <v-card-actions>
+                        <v-btn color="green accent-5" outlined>
+                        
+                          Thêm vào giỏ hàng
+                        </v-btn>
+                      </v-card-actions> -->
+                      <SingleProduct :product="product"></SingleProduct>
+                      
+                    <!-- </v-card> -->
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-tab-item>
+
+        <v-tab-item>
+          <v-container fluid>
+            
+            <v-row>
+              <v-col >
+                <v-row style="margin-left: 20px; margin-right: 20px">
+                  <v-col class="col-md-4 mt-6" v-for="product in purchasableProducts.slice(18,21)" :key="product.id">
+                    <!-- <v-card outlined> -->
+                      <!-- <v-img :src="product.image" height="200px" />
+                      <v-card-title>{{product.name}}</v-card-title>
+                      <v-card-subtitle>{{product.price}} đồng/100g</v-card-subtitle>
+                      <v-card-actions>
+                        <v-btn color="green accent-5" outlined>
+                        
+                          Thêm vào giỏ hàng
+                        </v-btn>
+                      </v-card-actions> -->
+                      <SingleProduct :product="product"></SingleProduct>
+                      
+                    <!-- </v-card> -->
                   </v-col>
                 </v-row>
               </v-col>
@@ -88,7 +144,7 @@
       </v-card-text>
 
       <v-card-text class="white--text pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Mua rau sạch online đang là hình thức mua hàng nhận được nhiều sự quan tâm nhất của khách hàng hiện nay, hiểu và nắm được nhu cầu của phần đông người tiêu dùng chúng tôi đã nhập rất nhiều người hàng rau sạch về cửa hàng và phục vụ cho nhu cầu của tất cả mọi khách hàng một cách nhanh chính và thuận tiện nhất.
       </v-card-text>
 
       <v-divider></v-divider>
@@ -116,7 +172,13 @@ export default {
         Products: [
           'raua.png', 'raub.png',
         ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        text: 'Mua rau sạch online đang là hình thức mua hàng nhận được nhiều sự quan tâm nhất của khách hàng hiện nay, hiểu và nắm được nhu cầu của phần đông người tiêu dùng chúng tôi đã nhập rất nhiều người hàng rau sạch về cửa hàng và phục vụ cho nhu cầu của tất cả mọi khách hàng một cách nhanh chính và thuận tiện nhất.',
+        icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
       }
     },
   computed: {

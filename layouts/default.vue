@@ -15,15 +15,20 @@
             hide-details
             rounded
             solo-inverted
+            placeholder="Tìm kiếm sản phẩm..."
+            class="text-white"
           ></v-text-field>
         </v-responsive>
-        <v-badge :content="numItemsInCart" bottom color="secondary" overlap>
-          <v-btn dark fab small text to="/cart">
+       
+            <v-badge :content="numItemsInCart" bottom color="secondary" overlap>
+            <v-btn dark fab small text to="/cart" >
             <v-icon>
               mdi-cart
             </v-icon>
-          </v-btn>
-        </v-badge>
+            </v-btn>
+            </v-badge>
+         
+    
       </v-container>
     </v-app-bar>
     <v-main>
@@ -42,10 +47,11 @@ export default {
       {name: 'Cửa Hàng', target: '/shop', icon: 'mdi-store'},
       {name: 'Liên Hệ', target: '/contact', icon: 'mdi-contacts-outline'},
     ],
+    hover: false,
   }),
   computed: {
     ...mapGetters([
-      'isLoggedIn', 'itemsInCart'
+      'isLoggedIn', 'purchasableProducts', 'itemsInCart'
     ]),
     numItemsInCart() {
       return this.$store.getters.itemsInCart.length
