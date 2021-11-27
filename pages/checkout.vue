@@ -246,7 +246,6 @@
                 id="cc-cvv"
                 placeholder=""
               />
-              <div class="invalid-feedback">Yêu cầu CVV hợp lệ</div>
             </div>
           </div>
           <hr class="mb-4" />
