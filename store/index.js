@@ -24,11 +24,11 @@ export const mutations = {
   setPassword(state, password) {
     state.password = password
   },
-  setUserInfo(state, user) {
+  setUserInfo(state, user){
     state.username = user.username,
-      state.password = user.password,
-      state.first_name = user.first_name,
-      state.last_name = user.last_name
+    state.password = user.password,
+    state.first_name = user.first_name,
+    state.last_name = user.last_name
   },
   resetUserState(state) {
     state.username = '';
@@ -74,8 +74,8 @@ export const actions = {
 
     headers.set('Authorization', 'Basic ' + btoa(payload.username + ":" + payload.password));
     try {
-      let result = await fetch(`${HOST}/users/`, {method: "GET", headers: headers});
-
+    let result = await fetch(`${HOST}/users/`, {method: "GET", headers: headers});
+    
       result = await result.json()
       if (result.detail) {
         return false
@@ -94,13 +94,13 @@ export const actions = {
     console.log(payload)
     //send POST request to backend
     let form = new FormData()
-    for (let key in payload) {
+    for (let key in payload){
       form.append(key, payload[key])
     }
-    try {
-      let result = await fetch(`${HOST}/register`, {method: 'POST', body: form})
+    try{
+      let result = await fetch(`${HOST}/user/register/`, {method : 'POST', body : form})
       result = await result.json()
-      if (result.message) {
+      if (result.message){
         console.log("result.message");
         console.log(result.message);
         return false;
@@ -108,30 +108,30 @@ export const actions = {
         commit('setUserInfo', result);
         return true;
       }
-    } catch (err) {
+    } catch(err) {
       console.log(err)
       return false;
     }
-
+   
   },
 
-  async updateProfile({commit}, payload) {
+  async updateProfile({commit}, payload){
     //send POST request to backend
     //waiting for the result
     //handle result
   },
 
-  async deleteAccount({commit}, payload) {
+  async deleteAccount({commit}, payload){
     //send DELETE request to backend
     let form = new FormData();
-    form.append('username', payload['username']);
-    try {
+    form.append('username', payload['username']); 
+    try{
       let result = await fetch(`${HOST}/user/delete/`, {method: 'DELETE', body: form});
-      if (result) {
+      if (result){
         commit('resetUserState')
         return 0;
       }
-    } catch (err) {
+    } catch(err) {
       console.log("Cannot delete user account")
       console.log(err)
     }
