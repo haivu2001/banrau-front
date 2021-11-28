@@ -42,7 +42,7 @@
                                     @click="dialog = false"
                                     to = "/"
                                   >
-                                    I accept
+                                    Trở lại shop
                                   </v-btn>
                                 </v-card-actions>
                               </v-card>
