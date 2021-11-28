@@ -14,7 +14,39 @@
                         <input type="email" required class="contact__content-input">
                         <lable class="contact__content-label">NỘI DUNG :</lable>
                         <textarea name="" id="" cols="30" rows="5" class="contact__content-input"></textarea>
-                        <v-btn elevation="2" small color="green accent 5" style="width: 20%">GỬI TIN NHẮN</v-btn>
+
+                        <v-dialog
+                            v-model="dialog"
+                            width="500"
+                          >
+                           <template v-slot:activator="{ on, attrs }">
+                            <v-btn elevation="2" small color="green accent 5" style="width: 20%" v-bind="attrs"
+                                  v-on="on">GỬI TIN NHẮN</v-btn>
+                                                </template>
+                                                <v-card>
+                                <v-card-title class="text-h5 grey lighten-2">
+                                  Gửi thành công
+                                </v-card-title>
+
+                                <v-card-text style="margin-top: 20px">
+                                  Cảm ơn bạn đã quan tâm đến của hàng !
+                                </v-card-text>
+
+                                <v-divider></v-divider>
+
+                                <v-card-actions>
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    color="primary"
+                                    text
+                                    @click="dialog = false"
+                                    to = "/"
+                                  >
+                                    I accept
+                                  </v-btn>
+                                </v-card-actions>
+                              </v-card>
+                            </v-dialog>
                     </form>
                 </div>
 
@@ -126,6 +158,7 @@
         'mdi-linkedin',
         'mdi-instagram',
       ],
+      dialog: false,
       members: [
         {
           image: 'hai.jpg',
